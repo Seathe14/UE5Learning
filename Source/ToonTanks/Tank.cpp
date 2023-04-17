@@ -20,8 +20,6 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 	TankPlayerController = Cast<AToonTanksPlayerController>(GetController());
-	if (TankPlayerController)
-		TankPlayerController->SetPlayerEnabledState(true);
 }
 
 void ATank::HandleDestruction()
@@ -30,6 +28,7 @@ void ATank::HandleDestruction()
 	TankPlayerController->SetPlayerEnabledState(false);
 	SetActorHiddenInGame(true);
 	SetActorTickEnabled(false);
+	bAlive = false;
 }
 
 // Called every frame
@@ -58,7 +57,7 @@ void ATank::Move(float Value)
 void ATank::Turn(float Value)
 {
 	FRotator DeltaRotator = FRotator::ZeroRotator;
-	DeltaRotator.Yaw = Value * GetWorld()->GetDeltaSeconds() * Speed / 10;
+	DeltaRotator.Yaw = Value * GetWorld()->GetDeltaSeconds() * TurnRate;
 	AddActorLocalRotation(DeltaRotator);
 }
 

@@ -23,6 +23,8 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void HandleDestruction() override;
 
+	AToonTanksPlayerController* GetTankPlayerController() const { return TankPlayerController; }
+	bool GetAlive() const { return bAlive; }
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -47,4 +49,5 @@ private:
 	void Rotate(float Value);
 
 	AToonTanksPlayerController* TankPlayerController;
+	bool bAlive = true;
 };

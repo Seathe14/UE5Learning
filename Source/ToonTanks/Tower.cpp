@@ -21,7 +21,7 @@ void ATower::HandleDestruction()
 
 void ATower::CheckFireCondition()
 {
-	if (HasTarget()) {
+	if (HasTarget() && Tank->GetAlive()) {
 		Fire();
 	}
 }
